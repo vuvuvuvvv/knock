@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,7 +21,12 @@
             position: relative;
         }
 
-        #box,#notify,#mo,#hand,#sound,span {
+        #box,
+        #notify,
+        #mo,
+        #hand,
+        #sound,
+        span {
             position: absolute;
             user-select: none !important;
         }
@@ -33,7 +39,7 @@
             left: 50%;
             transform: translate(-50%, -50%);
         }
-        
+
         #notify {
             width: 30vw;
             height: 50vh;
@@ -57,6 +63,7 @@
             #box {
                 width: 35vw;
             }
+
             span {
                 color: #fff;
                 font-size: 6.5vw;
@@ -67,6 +74,7 @@
             #box {
                 width: 45vw;
             }
+
             span {
                 color: #fff;
                 font-size: 6vw;
@@ -77,6 +85,7 @@
             #box {
                 width: 35vw;
             }
+
             span {
                 color: #fff;
                 font-size: 5vw;
@@ -107,7 +116,7 @@
         #mo {
             width: 80%;
             bottom: 0px;
-            left:10%;
+            left: 10%;
             transform-origin: 0 0;
         }
 
@@ -129,12 +138,15 @@
         .knock {
             transform: rotate(2deg) !important;
         }
+
         .shake {
             transform: rotate(2deg) !important;
         }
+
         .d-none {
             display: none !important;
         }
+
         span {
             bottom: 0;
             left: 50%;
@@ -145,11 +157,12 @@
         @keyframes hide {
             0% {
                 bottom: 0;
+            }
+
+            20% {
                 opacity: 1;
             }
-            60% {
-                opacity: 0;
-            }
+
             100% {
                 bottom: 50%;
                 opacity: 0;
@@ -157,6 +170,7 @@
         }
     </style>
 </head>
+
 <body>
     <div id="box">
         <img src="./web/images/mo.png" id="mo" />
@@ -167,28 +181,30 @@
     <script>
         var knocking = false;
         var audio = new Audio('./web/sounds/bonk_7zPAD7C.mp3');
-        $('body').mousedown(()=>{
+        $('body').mousedown(() => {
             $('#hand').addClass('knock');
             $('#mo').addClass('shake');
             $('#sound').removeClass('d-none');
             span()
             audio.currentTime = 0;
             audio.play();
+            setTimeout(() => {
+                $('#hand').removeClass('knock');
+                $('#mo').removeClass('shake');
+                $('#sound').addClass('d-none');
+            }, 100)
         })
-        .mouseup(() => {
-            $('#hand').removeClass('knock');
-            $('#mo').removeClass('shake');
-            $('#sound').addClass('d-none');
-        })
+
         function span() {
             let span = $('<span></span>');
             span.text('+1 công đức');
             span.addClass('')
             $('#notify').append(span)
-            setTimeout(()=> {
+            setTimeout(() => {
                 span.remove()
             }, 800)
         }
     </script>
 </body>
+
 </html>
